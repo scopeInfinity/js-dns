@@ -5,15 +5,22 @@
     </div>
     <script>
         const mapping = {
-            "letssync": "http://[2a02:8084:d6bb:7680:b9ce:85f7:175b:dc7]:9000/"
+            "letssync": "http://[2a02:8084:d6bb:7680:b9ce:85f7:175b:dc7]:9000"
         };
     </script>
     <script>
         function get_query() {
-            var url = document.URL;
-            var parts = url.split("?");
-            var query = parts[parts.length - 1];
-            return query;        
+            var url = new URL(document.URL);
+            var query = url.search.substr(1);
+            return query;
+        }
+        function get_destination(query) {
+            var parts = query.split("/");
+            var fake_host = parts[0];
+            if(!mapping.hasOwnProperty(fake_host)) {
+                return null;
+            }
+            return query.replace(fake_host, mapping[fake_host]);
         }
         function appendMessage(str) {
             var msg = document.getElementById("msg");
@@ -21,11 +28,13 @@
             console.log(str);
         }
         function parse_and_redirect() {
-            var query = get_query();
             appendMessage("JS running, trying to match query.");
-            if(mapping.hasOwnProperty(query)) {
+            var query = get_query();
+            var destination = get_destination(query);
+            console.log("destination:" + destination);
+            if (destination != null) {
                 appendMessage("Match found, redirecting...");
-                window.location.href = mapping[query];
+                window.location.href = destination;
             } else {
                 appendMessage("Not match found.");
             }
