@@ -1,0 +1,36 @@
+<html>
+  <body>
+    <div id="msg">
+      JS not yet executed.
+    </div>
+    <script>
+        const mapping = {
+            "letssync": "http://[2a02:8084:d6bb:7680:b9ce:85f7:175b:dc7]:9000/"
+        };
+    </script>
+    <script>
+        function get_query() {
+            var url = document.URL;
+            var parts = url.split("?");
+            var query = parts[parts.length - 1];
+            return query;        
+        }
+        function appendMessage(str) {
+            var msg = document.getElementById("msg");
+            msg.innerHTML += "<br>" + str;
+            console.log(str);
+        }
+        function parse_and_redirect() {
+            var query = get_query();
+            appendMessage("JS running, trying to match query.");
+            if(mapping.hasOwnProperty(query)) {
+                appendMessage("Match found, redirecting...");
+                window.location.href = mapping[query];
+            } else {
+                appendMessage("Not match found.");
+            }
+        }
+        parse_and_redirect();
+    </script>
+  </body>
+</html>
