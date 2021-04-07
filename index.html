@@ -3,25 +3,8 @@
     <div id="msg">
       JS not yet executed.
     </div>
+    <script type="text/javascript" src="dns_resolver.js"></script>
     <script>
-        const mapping = {
-            "letssync": "http://[2a02:8084:d6bb:7680:b9ce:85f7:175b:dc7]:9000"
-        };
-    </script>
-    <script>
-        function get_query() {
-            var url = new URL(document.URL);
-            var query = url.search.substr(1);
-            return query;
-        }
-        function get_destination(query) {
-            var parts = query.split("/");
-            var fake_host = parts[0];
-            if(!mapping.hasOwnProperty(fake_host)) {
-                return null;
-            }
-            return query.replace(fake_host, mapping[fake_host]);
-        }
         function appendMessage(str) {
             var msg = document.getElementById("msg");
             msg.innerHTML += "<br>" + str;
@@ -29,15 +12,16 @@
         }
         function parse_and_redirect() {
             appendMessage("JS running, trying to match query.");
-            var query = get_query();
-            var destination = get_destination(query);
-            console.log("destination:" + destination);
-            if (destination != null) {
-                appendMessage("Match found, redirecting...");
-                window.location.href = destination;
-            } else {
-                appendMessage("Not match found.");
-            }
+            var query = get_dns_query();
+            get_destination(query).then(destination => {
+                appendMessage("destination:" + destination);
+                if (destination != null) {
+                    appendMessage("Match found, redirecting...");
+                    window.location.href = destination;
+                } else {
+                    appendMessage("Not match found.");
+                }
+            });
         }
         parse_and_redirect();
     </script>
