@@ -1,8 +1,9 @@
 "use strict";
 
 // URL pointing to DNS Mapping in version 1.
-const DNS_MAPPING_URL = "mapping.json";
 const SUPPORTED_VERSION = 1;
+// Please use DNS_MAPPING_URL of your choice.
+const DNS_MAPPING_URL = "https://raw.githubusercontent.com/scopeInfinity/js-dns/map_scopeinfinity/mapping.json";
 
 // Retrieves the query from the current URL
 function get_dns_query() {
