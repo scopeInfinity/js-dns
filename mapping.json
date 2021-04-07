@@ -1,6 +1,11 @@
 {
     "version": 1,
     "map": {
+        "goto_google": {
+            "REPLACE": [
+                "https://www.google.com"
+            ]
+        },
         "letssync": {
             "REPLACE": [
                 "http://[2a02:8084:d6bb:7680:b9ce:85f7:175b:dc7]:9000"
