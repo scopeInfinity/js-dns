@@ -50,11 +50,11 @@ async function get_destination(query) {
             }
             // select random dns redirection.
             // supports IPv6 only.
-            let ip_v6_records = dns_record["AAAA"];
-            if (ip_v6_records == undefined) {
+            let host_records = dns_record["REPLACE"];
+            if (host_records == undefined) {
                 return null;
             }
-            let dst_host = ip_v6_records[Math.floor(Math.random() * ip_v6_records.length)];
+            let dst_host = host_records[Math.floor(Math.random() * host_records.length)];
             return query.replace(domainname, dst_host);
         });
     return destination;
