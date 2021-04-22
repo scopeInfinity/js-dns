@@ -8,7 +8,7 @@
         },
         "letssync": {
             "REPLACE": [
-                "http://[2a02:8084:d6bb:7680:b9ce:85f7:175b:dc7]:9000"
+                "https://letssync-224d9.web.app"
             ]
         }
     }
