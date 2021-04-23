@@ -3,7 +3,7 @@ Serve DNS over static page for HTTP webpages.
 
 ## Example
 
-- http://scopeinfinity.github.io/dns/?letssync redirects to webpage served over a dynamic IPv6.
+- http://scopeinfinity.github.io/dns/?letssync redirects to let's sync web page.
 - http://scopeinfinity.github.io/dns/?goto_google/search?q=pokemon redirects to https://google.com/search?q=pokemon.
   - Commit: [339b2b5d](https://github.com/scopeInfinity/js-dns/commit/339b2b5d9de27715805221e2100280aaedd38a59)
 
